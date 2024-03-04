@@ -37,6 +37,7 @@ export function App() {
         const { userName, name } = user;
         return (
           <TwitterFollowCard
+            key={userName}
             userName={userName}
             name={name}></TwitterFollowCard>
         );
