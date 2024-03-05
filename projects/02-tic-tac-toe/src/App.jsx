@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+
+const TURNS = {
+  x: "x",
+  o: "o",
+};
+
+const Square = ({ children, isSelected, updateBoard, index }) => {
+  const className = `square ${isSelected ? "is-selected" : ""}`;
+  return <div className={className}>{children}</div>;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [board, setBoard] = useState(Array(9).fill(null));
+  const [turn, setTurn] = useState(TURNS.x);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main className='board'>
+      <h2>Tic-Tac-Toe</h2>
+      <section className='game'>
+        {board.map((_, index) => {
+          return <Square key={index} index={index}></Square>;
+        })}
+      </section>
+      <section className='turn'>
+        <Square isSelected={turn === TURNS.x}>{TURNS.x}</Square>
+        <Square isSelected={turn === TURNS.o}>{TURNS.o}</Square>
+      </section>
+    </main>
+  );
 }
 
-export default App
+export default App;
