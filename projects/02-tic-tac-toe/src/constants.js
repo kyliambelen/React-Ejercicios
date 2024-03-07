@@ -4,7 +4,7 @@
 export const TURNS = {
   x: "❌ ",
   o: "🔵  ",
-  🔴 
+
 };
 
 // combo con todas laas opciones ganadoras
